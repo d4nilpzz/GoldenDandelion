@@ -1,0 +1,24 @@
+package dev.d4nilpzz.goldenDandelion.item;
+
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
+
+public class GoldenDandelionItem extends BlockItem {
+    public GoldenDandelionItem(Block block, Properties properties) {
+        super(block, properties);
+    }
+
+    @Override
+    public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, @NotNull Player player, @NotNull LivingEntity interactionTarget, @NotNull InteractionHand usedHand) {
+
+        System.out.println(player.getDisplayName() + " - interacted to a - " + interactionTarget.getDisplayName());
+        
+        return super.interactLivingEntity(stack, player, interactionTarget, usedHand);
+    }
+}
