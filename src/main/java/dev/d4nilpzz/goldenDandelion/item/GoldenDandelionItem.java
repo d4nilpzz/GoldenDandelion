@@ -1,8 +1,10 @@
 package dev.d4nilpzz.goldenDandelion.item;
 
+import dev.d4nilpzz.goldenDandelion.registry.ModAttachments;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -16,9 +18,12 @@ public class GoldenDandelionItem extends BlockItem {
 
     @Override
     public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, @NotNull Player player, @NotNull LivingEntity interactionTarget, @NotNull InteractionHand usedHand) {
-
-        System.out.println(player.getDisplayName() + " - interacted to a - " + interactionTarget.getDisplayName());
+        if (interactionTarget.isBaby() && interactionTarget instanceof Animal animal) {
+            animal.setData(ModAttachments.GOLDEN_EFFECT, true);
+            stack.shrink(1);
+            return InteractionResult.SUCCESS;
+        }
         
-        return super.interactLivingEntity(stack, player, interactionTarget, usedHand);
+        return InteractionResult.FAIL;
     }
 }

@@ -2,6 +2,7 @@ package dev.d4nilpzz.goldenDandelion;
 
 import com.mojang.logging.LogUtils;
 import dev.d4nilpzz.goldenDandelion.item.GoldenDandelionItem;
+import dev.d4nilpzz.goldenDandelion.registry.ModAttachments;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -41,6 +42,7 @@ public class GoldenDandelion {
     public GoldenDandelion(IEventBus modEventBus, ModContainer modContainer) {
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
+        ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::commonSetup);
